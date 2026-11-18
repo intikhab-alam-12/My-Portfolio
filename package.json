@@ -1,15 +1,15 @@
 {
-  "homepage": "https://github.com/intikhab-alam-12/My-Portfolio.git",
   "name": "intikhab-alam-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://intikhab-alam-12.github.io/My-Portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "clsx": "2.1.1",
