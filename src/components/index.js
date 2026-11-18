@@ -16,3 +16,4 @@ export { default as GithubShowcase }        from './GithubShowcase';
 export { default as Contact }               from './Contact';
 export { default as Footer }                from './Footer';
 export { default as ThemeToggle }           from './ThemeToggle';
+export * from './illustrations';

@@ -9,6 +9,7 @@ import { FaFileWord, FaFileExcel, FaFilePowerpoint, FaDatabase } from 'react-ico
 import { TbApi } from 'react-icons/tb';
 import { skillCategories } from '../data/skills';
 import { SectionHeading } from './About';
+import { SectionDivider } from './illustrations';
 
 /* ══════════════════════════════════════════════════════════════
    ICON MAP — maps string identifiers → real brand icons
@@ -135,9 +136,29 @@ function SkillCard({ skill, categoryId, index }) {
       </h3>
 
       {/* Description */}
-      <p className="relative z-10 text-slate-500 text-[12px] leading-relaxed group-hover:text-slate-400 transition-colors duration-300">
+      <p className="relative z-10 text-slate-500 text-[12px] leading-relaxed group-hover:text-slate-400 transition-colors duration-300 mb-3">
         {skill.description}
       </p>
+
+      {/* Animated skill progress visualization */}
+      <div className="relative z-10 pt-2 border-t border-white/[0.06]">
+        <div className="flex items-center justify-between text-[10px] font-mono mb-1">
+          <span className="text-slate-500">Execution</span>
+          <span className="text-purple-400 font-semibold">Active · 60fps</span>
+        </div>
+        <div className="w-full h-1 rounded-full bg-white/[0.06] overflow-hidden">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={inView ? { width: '88%' } : {}}
+            transition={{ duration: 0.9, delay: 0.2 + index * 0.04, ease: 'easeOut' }}
+            className="h-full rounded-full"
+            style={{
+              background: `linear-gradient(90deg, ${color}, #8B5CF6)`,
+              boxShadow: `0 0 8px ${color}60`,
+            }}
+          />
+        </div>
+      </div>
 
       {/* Bottom icon glow on hover */}
       <div
@@ -275,6 +296,9 @@ export default function Skills() {
         >
           ✦ Skills reflect active learning &amp; hands-on project experience — no fabricated metrics
         </motion.p>
+
+        {/* Section Divider */}
+        <SectionDivider variant="circuit" className="mt-14 opacity-70" />
       </div>
     </section>
   );

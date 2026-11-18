@@ -1,8 +1,12 @@
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { GraduationCap, CalendarDays, BookOpen, Award, ChevronRight } from 'lucide-react';
+import {
+  GraduationCap, CalendarDays, BookOpen, Award, ChevronRight,
+  Code2, Globe, Database, Cpu, Network, CheckCircle2
+} from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { SectionHeading } from './About';
+import { SectionDivider } from './illustrations';
 
 /* ══════════════════════════════════════════════════════════════
    CONSTANTS
@@ -12,7 +16,7 @@ const COURSEWORK = [
   {
     title: 'Programming Fundamentals',
     desc: 'Core programming logic, algorithms, and problem-solving using structured and procedural paradigms.',
-    icon: '{ }',
+    icon: Code2,
     color: 'text-purple-400',
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
@@ -20,7 +24,7 @@ const COURSEWORK = [
   {
     title: 'Web Technologies & Architectures',
     desc: 'HTML5, CSS3, JavaScript, responsive design principles, and browser-based application development.',
-    icon: '</>',
+    icon: Globe,
     color: 'text-blue-400',
     bg: 'bg-blue-500/10',
     border: 'border-blue-500/20',
@@ -28,7 +32,7 @@ const COURSEWORK = [
   {
     title: 'Relational Databases & SQL',
     desc: 'Entity-relationship modeling, SQL query writing, normalization, and MS Access database systems.',
-    icon: '⊞',
+    icon: Database,
     color: 'text-cyan-400',
     bg: 'bg-cyan-500/10',
     border: 'border-cyan-500/20',
@@ -36,7 +40,7 @@ const COURSEWORK = [
   {
     title: 'Data Structures',
     desc: 'Arrays, linked lists, stacks, queues, and trees — foundations for efficient algorithm design.',
-    icon: '⬡',
+    icon: Cpu,
     color: 'text-emerald-400',
     bg: 'bg-emerald-500/10',
     border: 'border-emerald-500/20',
@@ -44,7 +48,7 @@ const COURSEWORK = [
   {
     title: 'Computer Networks & IT Tools',
     desc: 'Networking fundamentals, protocols, OSI model, and professional office productivity software.',
-    icon: '⬡',
+    icon: Network,
     color: 'text-amber-400',
     bg: 'bg-amber-500/10',
     border: 'border-amber-500/20',
@@ -104,6 +108,7 @@ function TimelineNode({ inView }) {
 function CourseworkCard({ item, index }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-30px' });
+  const Icon = item.icon;
 
   return (
     <motion.div
@@ -122,8 +127,8 @@ function CourseworkCard({ item, index }) {
     >
       <div className="flex items-start gap-3">
         {/* Icon badge */}
-        <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${item.bg} border ${item.border} flex items-center justify-center`}>
-          <span className={`text-xs font-mono font-bold ${item.color}`}>{item.icon}</span>
+        <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${item.bg} border ${item.border} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
+          <Icon size={16} className={item.color} />
         </div>
         <div className="min-w-0">
           <h4 className={`font-heading font-semibold text-sm ${item.color} mb-1`}>{item.title}</h4>
@@ -338,6 +343,9 @@ export default function Education() {
             ✦ &nbsp; Education is a journey, not a destination &nbsp; ✦
           </p>
         </motion.div>
+
+        {/* Section Divider */}
+        <SectionDivider variant="slant" className="mt-14 opacity-70" />
       </div>
     </section>
   );

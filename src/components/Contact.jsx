@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { SectionHeading } from './About';
+import { SectionDivider } from './illustrations';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -499,6 +500,9 @@ export default function Contact() {
             </div>
           </motion.div>
         </div>
+
+        {/* Section Divider */}
+        <SectionDivider variant="wave" className="mt-14 opacity-70" />
       </div>
     </section>
   );

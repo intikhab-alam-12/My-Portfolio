@@ -2,9 +2,11 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   Code2, Server, Plug, Braces, Database, GitBranch,
-  MapPin, GraduationCap, Wifi, Copy, Check, Sparkles,
+  MapPin, GraduationCap, Wifi, Copy, Check, Sparkles, Layers, Cpu
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import profileImg from '../assets/intikhab-alam.jpg';
+import { TechEcosystemOrbital, SectionDivider } from './illustrations';
 
 /* ══════════════════════════════════════════════════════════════
    CONSTANTS
@@ -405,7 +407,7 @@ export default function About() {
             <FadeUp delay={0.15}>
               <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#0D0F1A]/80 border border-white/[0.08] backdrop-blur-xl shadow-lg">
                 <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-purple-500/40 flex-shrink-0 shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-                  <img src="/profile.jpg" alt="Intikhab Alam" className="w-full h-full object-cover object-top" />
+                  <img src={profileImg} alt="Intikhab Alam" className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
@@ -422,6 +424,40 @@ export default function About() {
             <SpecCard />
           </div>
         </div>
+
+        {/* Full-Stack MERN Architecture Ecosystem Card */}
+        <FadeUp delay={0.2} className="mb-16">
+          <div className="relative rounded-3xl p-6 sm:p-8 overflow-hidden bg-gradient-to-br from-purple-900/10 via-black/40 to-blue-900/10 border border-white/[0.08] backdrop-blur-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-6 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-mono text-purple-300">
+                  <Cpu size={13} className="text-purple-400" />
+                  <span>Architecture & Integration</span>
+                </div>
+                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white">
+                  Full-Stack <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">MERN Ecosystem</span>
+                </h3>
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                  Engineering complete client-to-cloud workflows — fluid frontend interfaces in React.js, high-throughput REST APIs and middleware with Node.js and Express, connected to document databases with MongoDB.
+                </p>
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                    <div className="text-xs font-mono text-purple-300 font-semibold">Client Tier</div>
+                    <div className="text-[11px] text-slate-400 mt-0.5">React, Tailwind, ES6+</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                    <div className="text-xs font-mono text-blue-300 font-semibold">Server & DB</div>
+                    <div className="text-[11px] text-slate-400 mt-0.5">Node, Express, MongoDB</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-6 flex justify-center">
+                <TechEcosystemOrbital className="max-w-[340px] sm:max-w-[380px]" />
+              </div>
+            </div>
+          </div>
+        </FadeUp>
 
         {/* Focus area cards grid */}
         <FadeUp delay={0}>
@@ -443,6 +479,9 @@ export default function About() {
             <FocusCard key={card.title} card={card} index={i} />
           ))}
         </div>
+
+        {/* Section Bottom Divider */}
+        <SectionDivider variant="wave" className="mt-16 opacity-75" />
       </div>
     </section>
   );

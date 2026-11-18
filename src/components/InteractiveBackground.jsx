@@ -42,6 +42,7 @@ function ParticleCanvas() {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isLight = document.documentElement.classList.contains('light');
       for (const p of particles.current) {
         p.x += p.vx;
         p.y += p.vy;
@@ -53,7 +54,9 @@ function ParticleCanvas() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+        ctx.fillStyle = isLight
+          ? `rgba(139, 92, 246, ${p.alpha * 1.4})`
+          : `rgba(255, 255, 255, ${p.alpha})`;
         ctx.fill();
       }
       rafRef.current = requestAnimationFrame(draw);
@@ -114,8 +117,8 @@ export default function InteractiveBackground() {
         style={{
           backgroundSize: '44px 44px',
           backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.028) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.028) 1px, transparent 1px)
+            linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
           `,
         }}
       />

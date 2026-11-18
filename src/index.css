@@ -98,6 +98,12 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  html.light .glass-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+  }
+
   .glass-card-hover {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -109,10 +115,21 @@
     box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.15);
   }
 
+  html.light .glass-card-hover:hover {
+    background-color: #ffffff;
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 16px 36px -10px rgba(139, 92, 246, 0.15);
+  }
+
   .glass-pill {
     background-color: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  html.light .glass-pill {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   /* Text gradients */

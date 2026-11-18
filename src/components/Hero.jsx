@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion, useInView } from 'framer-motion';
-import { ArrowUpRight, Github, MessageSquare, ChevronDown, Sparkles, Code2, MapPin, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, Github, MessageSquare, ChevronDown, Sparkles, Code2, MapPin, CheckCircle2, Laptop, User } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import profileImg from '../assets/intikhab-alam.jpg';
+import { FloatingCodeElements, SectionDivider, DeveloperWorkspaceIllustration, LaptopCodingIllustration } from './illustrations';
 
 /* ══════════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
@@ -525,6 +526,7 @@ function IDECard({ reduced }) {
 export default function Hero() {
   const reduced = useReducedMotion();
   const sectionRef = useRef(null);
+  const [graphicTab, setGraphicTab] = useState('portrait');
 
   return (
     <>
@@ -541,12 +543,14 @@ export default function Hero() {
         id="home"
         ref={sectionRef}
         className="
-          relative z-10 min-h-screen flex items-center
+          relative z-10 min-h-screen flex flex-col justify-center
           px-5 sm:px-8 md:px-12 lg:px-16
-          pt-20 pb-12
+          pt-24 pb-8 overflow-hidden
         "
         aria-label="Hero — Intikhab Alam"
       >
+        {/* Floating animated code symbols */}
+        <FloatingCodeElements reduced={reduced} />
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
@@ -618,10 +622,90 @@ export default function Hero() {
             </div>
 
             {/* ═══ RIGHT COLUMN ══════════════════════════════════ */}
-            <div className="flex flex-col items-center gap-5 order-1 lg:order-2">
+            <div className="flex flex-col items-center gap-4 order-1 lg:order-2 w-full max-w-lg lg:max-w-none mx-auto">
 
-              {/* Authentic Developer Portrait Frame */}
-              <ProfilePortrait reduced={reduced} />
+              {/* View Switcher: Real Portrait vs Animated Workspace SVG */}
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-white/[0.04] dark:bg-white/[0.04] light:bg-black/[0.04] border border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.08]">
+                <button
+                  onClick={() => setGraphicTab('portrait')}
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all duration-200 ${
+                    graphicTab === 'portrait'
+                      ? 'bg-purple-600 text-white shadow-[0_0_12px_rgba(139,92,246,0.5)]'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                  data-cursor="pointer"
+                  aria-label="View developer portrait"
+                >
+                  <User size={13} />
+                  <span>Portrait</span>
+                </button>
+                <button
+                  onClick={() => setGraphicTab('workspace')}
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all duration-200 ${
+                    graphicTab === 'workspace'
+                      ? 'bg-purple-600 text-white shadow-[0_0_12px_rgba(139,92,246,0.5)]'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                  data-cursor="pointer"
+                  aria-label="View animated workspace illustration"
+                >
+                  <Laptop size={13} />
+                  <span>Workspace</span>
+                </button>
+                <button
+                  onClick={() => setGraphicTab('laptop')}
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all duration-200 ${
+                    graphicTab === 'laptop'
+                      ? 'bg-purple-600 text-white shadow-[0_0_12px_rgba(139,92,246,0.5)]'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                  data-cursor="pointer"
+                  aria-label="View animated MERN laptop illustration"
+                >
+                  <Code2 size={13} />
+                  <span>Laptop SVG</span>
+                </button>
+              </div>
+
+              {/* Dynamic Graphic Display */}
+              <AnimatePresence mode="wait">
+                {graphicTab === 'portrait' && (
+                  <motion.div
+                    key="portrait"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full"
+                  >
+                    <ProfilePortrait reduced={reduced} />
+                  </motion.div>
+                )}
+                {graphicTab === 'workspace' && (
+                  <motion.div
+                    key="workspace"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full"
+                  >
+                    <DeveloperWorkspaceIllustration />
+                  </motion.div>
+                )}
+                {graphicTab === 'laptop' && (
+                  <motion.div
+                    key="laptop"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full"
+                  >
+                    <LaptopCodingIllustration />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* IDE Code Card */}
               <div className="w-full max-w-sm md:max-w-md lg:max-w-full">
@@ -661,7 +745,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.6, duration: 0.6 }}
-            className="flex justify-center mt-16 lg:mt-20"
+            className="flex justify-center mt-12 lg:mt-16"
             aria-hidden
           >
             <motion.div
@@ -677,6 +761,9 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Section Divider */}
+        <SectionDivider variant="circuit" className="mt-8 opacity-75" />
       </section>
     </>
   );

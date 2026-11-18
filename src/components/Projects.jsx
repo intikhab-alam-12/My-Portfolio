@@ -7,6 +7,7 @@ import {
 import { projects, projectCategories } from '../data/projects';
 import { personalInfo } from '../data/portfolioData';
 import { SectionHeading } from './About';
+import { SectionDivider } from './illustrations';
 
 /* ══════════════════════════════════════════════════════════════
    BESPOKE PROJECT UI PREVIEW MOCKUPS (NO FAKE SCREENSHOTS)
@@ -668,6 +669,9 @@ export default function Projects() {
             More experimental builds, components &amp; challenges are continuously committed on GitHub.
           </p>
         </div>
+
+        {/* Section Divider */}
+        <SectionDivider variant="circuit" className="mt-14 opacity-70" />
       </div>
 
       {/* Details Modal */}
